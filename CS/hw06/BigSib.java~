@@ -1,0 +1,18 @@
+/* Alexia Leong
+APCS1 pd2
+HW6 -- BigSibs.java
+2017-09-25 */
+
+public class BigSib{
+    private String helloMsg;
+    public void setHelloMsg(String newMsg){
+	helloMsg = newMsgnew helloMsg
+    }
+    public static void main( String[] args){
+    }
+    public static void greet(String name){
+	return (name)
+    }
+    
+}
+

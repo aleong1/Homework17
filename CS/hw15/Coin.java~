@@ -1,0 +1,24 @@
+/* Alexia Leong
+APCS1 pd2
+HW15 --Wayne's World
+2017-10-11 */   
+
+public class Coin{
+    private double value;
+    private String upFace;
+    private String name;
+    private int flipCtr;
+    private int headsCtr;
+    private int tailsCtr;
+    private double bias;
+
+    public Coin() {
+	value = 0.10;
+	upFace = "heads";
+	name = "dime";
+	flipCtr = 0;
+	headsCtr = 0;
+	tailsCtr = 0;
+	bias = 0.0;
+	
+}

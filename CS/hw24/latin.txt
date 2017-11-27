@@ -1,0 +1,40 @@
+Now testing hasA(String w, String letter):
+'cat' has the letter 'a': true
+'cat' has the letter 'p': false
+------------------------------------
+Now testing isAVowel(String letter):
+'e' is a vowel: true
+'z' is a vowel: false
+------------------------------------
+Now testing countVowels(String w):
+Number of vowels in 'meatball': 3
+Number of vowels in 'xdz': 0
+------------------------------------
+Now testing hasAVowel(String w):
+'cat' has a vowel: true
+'zzz' has a vowel: false
+------------------------------------
+Now testing allVowels(String w):
+Vowels in 'meatball': eaa
+Vowels in 'hello': eo
+Vowels in 'zzz': 
+----------------------------------------------
+Now testing firstVowel(String w):
+The first vowel in 'zzz' is: 
+The first vowel in 'armor' is: a
+The first vowel in 'zzz' is: e
+The first vowel in 'gmo' is: o
+----------------------------------------------
+Now testing beginsWithVowel(String w):
+'zzz' begins with a vowel: false
+'adios' begins with a vowel: true
+'cellar' begins with a vowel: false
+----------------------------------------------
+Now testing engToPig(String w):
+'apple' in Pig Latin is: appleway
+'yellow' in Pig Latin is: ellowyay
+'cat' in Pig Latin is: atcay
+'through' in Pig Latin is: oughthray
+'true' in Pig Latin is: uetray
+'Cat' in Pig Latin is: Atcay
+'don't with ' in Pig Latin is: on'tday

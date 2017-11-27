@@ -1,0 +1,30 @@
+/*  Alexia Leong
+APCS1 pd2
+HW02 -- Personalizing Greet.java 
+2017-09-17
+ */
+
+import java.util.Random;
+public class Greet{
+    public static void main(String[] args) {
+	New a = new New();
+	Random rand = new Random();
+	int integer = rand.nextInt(3) + 1;
+	if (integer == 1){
+	    System.out.println("Hello Zack, Welcome to the Tipton");
+	} else if (integer == 2) {
+	    System.out.println("Hello Cody, Welcome to the Tipton");
+	} else {
+	    System.out.println("Hello Esteban, Welcome to the Tipton");
+    }
+
+    }
+}
+
+class New{
+    public void greet(String name){
+	System.out.println("");
+    }
+}
+	    
+/* Credit to a lot of the people on the forum for helping me with this.   */ 

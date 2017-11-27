@@ -1,0 +1,64 @@
+/* Team Are We There Yet? - Alexia Leong, Bing Li, and Jackie Li
+   APCS1 pd2
+   HW09 -- CMYM
+   2017-10-01 */
+
+public class BankAccount{
+    //instance variables:
+    private String accountholdername;
+    private int  accountnumber;
+    private String password;
+    private int pinnumber;
+    private Double accountbalance;
+
+    //-> constructors:
+    public BankAccount() {
+	accountholdername = "John Doe";
+	password = "Chicken";
+	accountnumber = 212312480;
+	pinnumber = 4800;
+	accountbalance = 0.0;
+    }
+
+    //-> methods:
+    public static void main(String[] args){
+    }
+    public String accountname(String name) {
+	accountholdername = name;
+	return accountholdername;
+    }
+    public String passwrd(String word){
+	password = word;
+	return password;
+    }
+    public int acctnum(int number) {
+	accountnumber = number;
+	return accountnumber;
+    }
+    public int pinnum(int pin) {
+	pinnumber= pin;
+	return pinnumber;
+    }
+    public Double balance(Double money) {
+	accountbalance = money;
+	return accountbalance;
+    }
+    public Double withdraw(Double takingout) {
+	accountbalance -= takingout;
+	return accountbalance;
+    }
+    public Double deposit(Double puttingin) {
+	accountbalance += puttingin;
+	return accountbalance;
+    }
+    public String printAll(){
+	String info;
+	info = "Name: " + accountholdername + "\n";
+	info += "Password: " + password + "\n";
+	info += "Account Number: " + accountnumber + "\n";
+	info += "Pin Number: " + pinnumber + "\n";
+	info += "Current Balance: $" + accountbalance.toString();
+	System.out.println(info);
+	return info;
+    }
+}

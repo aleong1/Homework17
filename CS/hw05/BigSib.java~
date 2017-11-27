@@ -1,0 +1,16 @@
+/* Alexia Leong
+APCS1 pd2
+HW4 -- BigSibs.java
+2017-09-18 */
+
+public class BigSib{
+    public static String greet(String name) {
+	return("Hey there ");
+	return(name);
+	return(", how are you today?");
+    }
+    public static void main (String[] args) {
+
+   }
+}
+

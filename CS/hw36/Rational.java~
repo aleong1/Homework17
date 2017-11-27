@@ -1,0 +1,51 @@
+public class Rational{
+    //instance vars
+    private int _numerator;
+    private int _denominator;
+    //constructors
+    public Rational(){
+	_numerator = 0;
+	_denominator = 1;
+    }
+    public Rational(int num, int den){
+	this();
+        if (den == 0){
+	    System.out.println("Invalid denominator, set it to an integer other than 0.");
+	    System.out.println("Setting the rational number to 0/1");
+	}
+	else{
+	    _numerator = num;
+	    _denominator = den;
+	}
+    }
+    //methods
+    public String toString(){	
+	String output = "Rational Number is: ";
+	output += _numerator;
+	output += "/";
+	output +=  _denominator;
+	return output; 
+    }
+    public double floatValue(){
+	double floated;
+	floated = (double) _numerator;
+	floated /= (double) _denominator;
+	return floated;
+    }
+    public void multiply(Rational a){
+	_numerator *= a._numerator;
+	_denominator *= a._denominator;
+    }
+     public void divide(Rational a){
+	_numerator /= a._numerator;
+	_denominator /= a._denominator;
+    }
+    
+    public static void main(String[] args){
+	Rational r = new Rational(2,3); //Stores rational number 2/3
+	Rational s = new Rational(1,2); //Stores rational number 1/2
+	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains 1/2
+	System.out.println(r);
+	System.out.println(s);
+    }
+}

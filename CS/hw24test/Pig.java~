@@ -1,0 +1,189 @@
+public class Pig 
+{   //Q: How does this initialization make your life easier?
+    //A: I can search through VOWELS and see if a given string starts with any of the letters of VOWELS.
+    private static final String VOWELS = "aeiou";
+    private static final String PUNCT = ",.?!;";
+
+    /*=====================================
+      boolean hasA(String,String) -- checks for a letter in a String
+      pre:  w != null, letter.length() == 1
+      post: hasA("cat", "a") -> true
+      hasA("cat", "p")       -> false
+      =====================================*/
+    public static boolean hasA( String w, String letter ) 
+    {    return w.indexOf(letter) != -1;      
+    }//end hasA()
+
+    /*=====================================
+      boolean isAVowel(String) -- tells whether a letter is a vowel
+      precondition: letter.length() == 1
+      =====================================*/
+    public static boolean isAVowel( String letter ) 
+    {   return VOWELS.indexOf(letter.toLowerCase()) != -1;
+    }
+
+    /*=====================================
+      int countVowels(String) -- counts vowels in a String
+      pre:  w != null
+      post: countVowels("meatball") -> 3
+      =====================================*/
+    public static int countVowels( String w ) 
+    {
+	//variable used to hold # of occurences of a vowel
+	int counter = 0;
+	for(int i =0;i<w.length();i++){
+	    if(isAVowel(w.substring(i,i+1))) counter += 1;       
+	}
+	return counter;
+    }
+    /*=====================================
+      boolean hasAVowel(String) -- tells whether a String has a vowel
+      pre:  w != null
+      post: hasAVowel("cat") -> true
+      hasAVowel("zzz")       -> false
+      =====================================*/
+    public static boolean hasAVowel( String w ) 
+    {
+	//uses countVowels to check if the word has any vowels
+	//if there are no vowels (0), return false   
+	return countVowels(w) != 0; 
+    }
+    /*=====================================
+      String allVowels(String) -- returns vowels in a String
+      pre:  w != null
+      post: allVowels("meatball") -> "eaa"
+      =====================================*/
+    public static String allVowels( String w ) 
+    {
+	String vowels = "";
+	String curr = "";
+	for(int i=0;i<w.length();i+=1){
+	    curr = w.substring(i,i+1);
+	    if(isAVowel(curr)) vowels += curr;
+	}    
+	return vowels;
+    }
+    //uses allVowels to return the first letter that string makes, if there even is a string
+    public static String firstVowel(String w){
+	String wordVowels = allVowels(w);
+	if(wordVowels.length() > 0) return wordVowels.substring(0,1);
+	else return wordVowels;
+    }
+    //returns true if w begins with a vowel, false otherwise
+    public static boolean beginsWithVowel(String w){
+	return isAVowel(w.substring(0,1));
+    }
+    //capitalizes first letter of string w
+    public static String capitalize(String w){
+	return w.substring(0,1).toUpperCase() + w.substring(1);
+    }    
+    //checks to see if first letter of w is capitalized
+    public static boolean startCapital(String w){
+        return (w.substring(0,1).equals(w.substring(0,1).toUpperCase()));
+    }
+    
+    //returns String before the first space
+    public static String beforeSpace(String w){
+	if(w.indexOf(" ") != -1) return w.substring(0,w.indexOf(" "));
+	else return w;
+    }
+    public static String puncts(String w)  //returns the punctuation of the word
+    {
+        String result = "";
+        for(int i=0; i<w.length() ;i+=1){
+	    if(PUNCT.indexOf(w.substring(i,i+1))!= -1) result += w.substring(i,i+1);
+        }
+        return result;
+    }
+    
+    public static String rvPunct(String w){ //removes the punctuation of a word
+        String result = "";
+        for(int i=0; i<w.length(); i+=1){
+	    if(PUNCT.indexOf(w.substring(i,i+1))!= -1) result = w.substring(0,i) +  w.substring(i+1);
+        }
+        return result;   
+    }
+
+   public static String afterpunct(String w){
+      String neww = "";
+      for(int i=0; i<w.length() ;i+=1){
+         if(PUNCT.indexOf(w.substring(i,i+1))!= -1){
+				    neww = w.substring(0,i) + w.substring(i+1) + w.substring(i, i+1);
+         }
+	    }
+	return neww;
+   }    
+    
+//pre-condition: given a string
+//returns piglatined string
+public static String engToPig(String w){
+    boolean capital = false;
+    String result = "";
+    String spacesResult = "";
+    String punctuation = puncts(w);
+    //w = rvPunct(w);
+    // System.out.println(punctuation);
+    //used to act on each word separately if input has more than 1 given word separated by spaces.
+    while(hasA(w, " "))
+	{
+	    String temp = beforeSpace(w);
+	    w = w.substring(w.indexOf(" ") + 1);
+	    spacesResult += engToPig(temp) + " "; //+ punctuation.substring(0,1);
+	}
+    if(beginsWithVowel(w)){
+	result = w + "way";
+	//if(punctuation.length() > 0) result += punctuation.substring(0,1);
+	//if(punctuation.length() > 1) punctuation = punctuation.substring(1);
+    }
+    else {
+	capital = startCapital(w);
+	//loops until the word begins with a vowel
+	for(int i = 0; i < w.length(); i+=1)
+	    {
+		// capital = startCapital(w);
+		if(beginsWithVowel(w))
+		    {  
+			//if the original word started out with a capital letter the pig word should have a starting capital letter
+			if(capital)
+			    {  
+				result = capitalize(w.toLowerCase()) + "ay";
+				// if(punctuation.length() > 0) result += punctuation.substring(0,1);
+				//if(punctuation.length() > 0) punctuation = punctuation.substring(1);
+			    }
+			//if the original word was all lowercase just return the pig word
+			else {
+			    result =  w+"ay";
+			    //if(punctuation.length() > 0) result += punctuation.substring(0,1);
+			    // if(punctuation.length() > 0) punctuation = punctuation.substring(1);
+			}
+		    }//closed outer if         
+		else{
+		    //if w begins with a y and it is not the first letter of the original word
+		    if(w.substring(0,1).equals("y") && i > 0){
+			if(capital) {
+			    result = capitalize(w.toLowerCase()) + "ay" ;
+			    //if(punctuation.length() > 0) result += punctuation.substring(0,1);
+			    //if(punctuation.length() > 0) punctuation = punctuation.substring(1);   
+			}
+			else 
+			    {   result = w + "ay";
+				// if(punctuation.length() > 0) result += punctuation.substring(0,1);
+				// if(punctuation.length() > 0) punctuation = punctuation.substring(1);
+			    }
+		    }
+		    //rearranging letters of the word until it begins with a vowel
+		    w= w.substring(1) + w.substring(0,1);
+		}
+	    }
+    }
+    return spacesResult + afterpunct(result);
+}
+public static void main( String[] args ) 
+{
+	System.out.println(engToPig("hello?"));
+    }
+   
+}//end main()
+}// end class Pig
+
+   
