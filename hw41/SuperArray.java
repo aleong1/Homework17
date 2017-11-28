@@ -59,14 +59,14 @@ public class SuperArray
     {
 	SuperArray curtis = new SuperArray();
 	System.out.println( "Printing empty SuperArray curtis..." );
-	System.out.println( curtis ); 
+	System.out.println( curtis );
 	
 	for( int i = 0; i < curtis._data.length; i++ ) {
 	    curtis.set( i, i * 2 );
 	}
 
 	System.out.println("Printing populated SuperArray curtis...");
-	System.out.println(curtis);  
+	System.out.println(curtis);
 
 	for( int i = 0; i < 3; i++ ) {
 	    curtis.expand();
