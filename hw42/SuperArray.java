@@ -75,7 +75,7 @@ public class SuperArray
 	}
 	_data = holder;  //
 	_data[holder.length-1] = newVal;  //set last element to newVal
-   
+	_size += 1;
     }
 
     //inserts an item at index
@@ -87,7 +87,7 @@ public class SuperArray
 	}
 	_data = holder;
 	_data[index] = newVal;
-
+	_size += 1;
     }
 
     //removes the item at index
@@ -101,13 +101,13 @@ public class SuperArray
 	    holder[i-1] = _data[i]; //then skip index and copy the elements, also shifts elements
 	}
 	_data = holder;
+	_size -= 1;
     }
 
     //return number of meaningful items in _data
     public int size()
     {
-	/* YOUR IMPLEMENTATION HERE */
-	return 0;
+	return _size;
     }
 
     //main method for testing
@@ -175,8 +175,7 @@ public class SuperArray
 	System.out.println(mayfield);
 	System.out.println("new length of underlying array: "
 			   + mayfield._data.length );
-	/*~~~~~~~~move~me~down~~~~~~~~~~~~~~V~~~~~~~~	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~*/
-    }//end main()
 
+    }//end main()
 
 }//end class
