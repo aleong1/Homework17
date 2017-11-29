@@ -31,6 +31,7 @@ public class SuperArray
     //output SuperArray in [a,b,c] format
     public String toString()
     {
+    
 	String foo = "[";
 	for( int i = 0; i < _size; i++ ) {
 	    foo += _data[i] + ",";
@@ -69,45 +70,61 @@ public class SuperArray
     //adds an item after the last item
     public void add( int newVal )
     {
-	int[] holder = new int[_data.length+1]; //make a new placeholder array with longer length
-	for( int i = 0; i < _data.length; i++ ){
+	int[] holder = new int[_size+1]; //make a new placeholder array with longer length
+	for( int i = 0; i < _size; i++ ){
 	    holder[i] = _data[i]; //copy all elements from old array into new one
+        
 	}
 	_data = holder;  //
 	_data[holder.length-1] = newVal;  //set last element to newVal
-	_size += 1;
+    //modify size: 1 more meaningful element
+    _size +=1;
+   
     }
 
     //inserts an item at index
     public void add( int index, int newVal )
     {
-      	int[] holder = new int[_data.length+1];
-	for( int i = 0; i < _data.length; i++ ){
+      	int[] holder = new int[_size+1];
+
+	for( int i = 0; i < index; i++ ){
 	    holder[i] = _data[i];
 	}
+	//insert value
+	holder[index] = newVal;
+
+	//insert rest of items
+	for(int i = index; i < _size;i+=1){
+	    holder[i+1] = _data[i];
+	    
+	}
+
 	_data = holder;
-	_data[index] = newVal;
-	_size += 1;
+	
+    //modify _size: 1 more meaningful element
+    _size += 1;
     }
 
     //removes the item at index
     //shifts elements left to fill in newly-empted slot
     public void remove( int index )
-    { int[] holder = new int[_data.length-1]; //placeholder array with 1 less element
+    { 
+    int[] holder = new int[_size-1]; //placeholder array with 1 less element
 	for(int i = 0; i < index; i++){  //up until the index, recopy the elements
 	    holder[i] =_data[i];
 	}
-	for(int i = index + 1; i < _data.length; i++){
+	for(int i = index + 1; i < _size; i++){
 	    holder[i-1] = _data[i]; //then skip index and copy the elements, also shifts elements
 	}
 	_data = holder;
-	_size -= 1;
+    //modify _size: 1 less meaningful element
+    _size -=1;
     }
 
     //return number of meaningful items in _data
     public int size()
     {
-	return _size;
+    return _size;
     }
 
     //main method for testing
@@ -175,7 +192,10 @@ public class SuperArray
 	System.out.println(mayfield);
 	System.out.println("new length of underlying array: "
 			   + mayfield._data.length );
-
+               
+    
+	/*~~~~~~~~move~me~down~~~~~~~~~~~~~~V~~~~~~~~	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~*/
     }//end main()
+
 
 }//end class
