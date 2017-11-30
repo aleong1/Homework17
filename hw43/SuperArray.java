@@ -31,7 +31,6 @@ public class SuperArray implements ListInt
     _size = 0;
   }
 
-
   //output SuperArray in [a,b,c] format
   public String toString()
   {
@@ -46,7 +45,6 @@ public class SuperArray implements ListInt
     return foo;
   }
 
-
   //double capacity of SuperArray
   private void expand()
   {
@@ -56,13 +54,11 @@ public class SuperArray implements ListInt
     _data = temp;
   }
 
-
   //accessor -- return value at specified index
   public int get( int index )
   {
     return _data[index];
   }
-
 
   //mutator -- set value at index to newVal,
   //           return old value at index
@@ -73,14 +69,12 @@ public class SuperArray implements ListInt
     return temp;
   }
 
-
   //adds an item after the last item
-  public boolean add( int newVal )
+    public boolean add( int newVal ) // turned into boolean
   {
     add( _size, newVal );
     return true;
   }
-
 
   //inserts an item at index
   public void add( int index, int newVal )
@@ -95,26 +89,23 @@ public class SuperArray implements ListInt
       _size++;
   }
 
-
   //removes the item at index
   //shifts elements left to fill in newly-empted slot
-  public int remove( int index )
+    public int remove( int index ) //no longer void
     { int val = _data[index];
     for( int i = index; i < _size - 1; i++ ) {
       _data[i] = _data[i+1];
     }
     _data[_size-1] = 0;
     _size--;
-    return val;
+    return val;  //returns old value of what was in the index
   }
-
 
   //return number of meaningful items in _data
   public int size()
   {
     return _size;
   }
-
 
   //main method for testing
   public static void main( String[] args )
@@ -149,10 +140,7 @@ public class SuperArray implements ListInt
     System.out.println("Printing SuperArray mayfield post-insert...");
     System.out.println(mayfield);
 
-    
-/*~~~~~~~~move~me~down~~~~~~~~~~~~~~V~~~~~~~~      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~*/
   }//end main()
-
 
 }//end class
 
