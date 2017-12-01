@@ -142,14 +142,15 @@ public class Rational implements Comparable
 	boolean temp = false;
 	//First, reduce both fractions.
 	//...thus allowing for direct comparison of attributes
-	reduce();
+	reduce(); //reduces this
 	Rational a = (Rational) other;  //typecast here
-	if((other instanceof Rational) || ( _numerator == a._numerator && _denominator == a._denominator)){
+  a.reduce(); //reduces other
+	if((a == this) || ( _numerator == a._numerator && _denominator == a._denominator)){
 	    temp = true;
 	}
 	else{
 	    temp = false;//returns and Exception anyway
-	}      
+	}
 	return temp;
 
     }//end equals()
@@ -164,7 +165,7 @@ public class Rational implements Comparable
      *********************/
     public int compareTo( Object other )
     { int thisNumerator, otherNumerator;
-      
+
 	// If other is not a Rational, throw an exception
 	// This will exit the function, generating a runtime error
 	if (!(other instanceof Rational)){  //if other is not a Rational
@@ -193,8 +194,8 @@ public class Rational implements Comparable
 	Rational x = new Rational( 8, 12 );
 	String y = "yoo";
 
-	Object a = new Integer(0); //to test for exceptions, from API
-	  
+	Object a = new Integer(0);
+
 	System.out.println("r: " + r );
 	System.out.println("s: " +  s );
 	System.out.println("t: " +  t );
@@ -268,10 +269,11 @@ public class Rational implements Comparable
 	//  System.out.println( "s > y: " +  s.compareTo(y) );
 
 	System.out.println( "\nNow testing equals...");
-	System.out.println( "v.equals(v): " + v.equals(v) );
+	System.out.println( "v.equals(u): " + v.equals(u) );
 	System.out.println( "v.equals(w): " + v.equals(w) );
 	System.out.println( "w.equals(x): " + w.equals(x) );
-	//System.out.println( "v.equals(a): " + v.equals(a) ); //tests for exception message 
+	//System.out.println( "v.equals(a): " + v.equals(a) ); //tests for exception message
+	/*~~~v~~~~~~~~~~down~goer~3~~~~~~~~~~~~~v~~~~~  ~~~~~|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~~~*/
     }
 
 }//end class
