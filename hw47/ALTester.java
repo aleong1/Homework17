@@ -6,11 +6,6 @@
 import java.util.ArrayList;
 
 public class ALTester{
-<<<<<<< HEAD
-
-    public static void main(String[] args){
-	ALTester a = new ArrayList();
-=======
     
     public static ArrayList<Comparable> populate(ArrayList<Comparable> d){ //makes an ArrayList with 23 ints
 	for(int i = 0; i < 23; i++){
@@ -48,9 +43,10 @@ public class ALTester{
 	ArrayList<Comparable> foo = new ArrayList<Comparable>();
 	ArrayList<Comparable> w = populate(foo);
 	System.out.println("Current array is:\n" + w);
+	System.out.println("Min: " + OrderedArrayList.min(w)); //testing wrapper OrderedArrayList
+	System.out.println("Ordered List: " + OrderedArrayList.orderList(w));
 	System.out.println("Is the array sorted in ascending or descending order? " + order(w));
 
->>>>>>> 6d384d098dde28fbda83eb47dc85879b0912f287
     }
 
 }
