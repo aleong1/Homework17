@@ -1,3 +1,8 @@
+/*Alexia Leong
+  APCS1 pd2
+  HW48 -- Keep Guessing
+  2017-12-06 */
+
 /*==================================================
   class GuessNumber -- fun fun fun!
 
@@ -40,11 +45,25 @@ public class GuessNumber
       post: 
       ==================================================*/
     public void playRec() 
-    {
-	/* YOUR IMPLEMENTATION HERE */
+    {System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
+	int a = Keyboard.readInt();
+        if(a == _target){
+	    System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
+	}			       
+	else{
+	    if(a < _target){
+		System.out.print("Sorry, your number is too low, try again...");
+		_lo = a + 1;
+	    }
+	    else{
+		System.out.print("Sorry, your number is too high, try again...");
+		_hi = a - 1;
+	    }
+	    _guessCtr += 1;
+	    playRec();
+	}
+        
     }
-
-
     /*==================================================
       void playIter() -- Prompts a user to guess until guess is correct.
       Uses iteration.
@@ -53,29 +72,41 @@ public class GuessNumber
       ==================================================*/
     public void playIter() 
     {
-	/* YOUR IMPLEMENTATION HERE */
+        System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
+	int a = Keyboard.readInt();
+	while(a != _target){
+	    if(a < _target){
+		System.out.print("Sorry, your number is too low, try again...");
+		_lo = a + 1;
+	    }
+	    else{
+		System.out.print("Sorry, your number is too high, try again...");
+		_hi = a - 1;
+	    }
+	    System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
+	    a = Keyboard.readInt();
+	    _guessCtr += 1;
+	}
+	System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
     }
+    
+	//wrapper for playRec/playIter to simplify calling
+	public void play() 
+	{ 
+	    //use one or the other below:
+	    //playRec();
+	    playIter();
+	}
 
+	//main method to run it all
+	public static void main( String[] args ) 
+	{
+	    //instantiate a new game
+	    GuessNumber g = new GuessNumber(1,100);
 
-    //wrapper for playRec/playIter to simplify calling
-    public void play() 
-    { 
-	//use one or the other below:
-	//playRec();
-	playIter();
-    }
+	    //start the game
+	    g.play();
+	    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	}//end main
 
-
-    //main method to run it all
-    public static void main( String[] args ) 
-    {
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//instantiate a new game
-	GuessNumber g = new GuessNumber(1,100);
-
-	//start the game
-	g.play();
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    }//end main
-
-}//end class
+    }//end class
