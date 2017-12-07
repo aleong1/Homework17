@@ -51,11 +51,11 @@ public class GuessNumber
 	    System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
 	}			       
 	else{
-	    if(a < _target){
+	    if(a < _target){   //if less than target then set a new lower bound
 		System.out.print("Sorry, your number is too low, try again...");
 		_lo = a + 1;
 	    }
-	    else{
+	    else{ //otherwise set a new higher bound
 		System.out.print("Sorry, your number is too high, try again...");
 		_hi = a - 1;
 	    }
@@ -72,7 +72,7 @@ public class GuessNumber
       ==================================================*/
     public void playIter() 
     {
-        System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
+        System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");  //get initial number
 	int a = Keyboard.readInt();
 	while(a != _target){
 	    if(a < _target){
@@ -84,7 +84,7 @@ public class GuessNumber
 		_hi = a - 1;
 	    }
 	    System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
-	    a = Keyboard.readInt();
+	    a = Keyboard.readInt();   //continue to get new input number
 	    _guessCtr += 1;
 	}
 	System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
