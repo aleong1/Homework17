@@ -47,22 +47,27 @@ public class GuessNumber
     public void playRec() 
     {System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
 	int a = Keyboard.readInt();
-        if(a == _target){
-	    System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
-	}			       
-	else{
-	    if(a < _target){   //if less than target then set a new lower bound
-		System.out.print("Sorry, your number is too low, try again...");
-		_lo = a + 1;
-	    }
-	    else{ //otherwise set a new higher bound
-		System.out.print("Sorry, your number is too high, try again...");
-		_hi = a - 1;
-	    }
-	    _guessCtr += 1;
+	if(a < _lo || a > _hi){
+	    System.out.print("Your number is out of range, please choose a new one.");
 	    playRec();
 	}
-        
+        else{
+	    if(a == _target){
+		System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
+	    }			       
+	    else{
+		if(a < _target){   //if less than target then set a new lower bound
+		    System.out.print("Sorry, your number is too low, try again...");
+		    _lo = a + 1;
+		}
+		else{ //otherwise set a new higher bound
+		    System.out.print("Sorry, your number is too high, try again...");
+		    _hi = a - 1;
+		}
+		_guessCtr += 1;
+		playRec();
+	    }
+        }
     }
     /*==================================================
       void playIter() -- Prompts a user to guess until guess is correct.
@@ -74,14 +79,19 @@ public class GuessNumber
     {
         System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");  //get initial number
 	int a = Keyboard.readInt();
-	while(a != _target){
-	    if(a < _target){
-		System.out.print("Sorry, your number is too low, try again...");
-		_lo = a + 1;
+       	while(a != _target){
+	    if(a < _lo || a > _hi){
+		System.out.print("Your number is out of range, please choose a new one.");
 	    }
 	    else{
-		System.out.print("Sorry, your number is too high, try again...");
-		_hi = a - 1;
+		if(a < _target){
+		    System.out.print("Sorry, your number is too low, try again...");
+		    _lo = a + 1;
+		}
+		else{
+		    System.out.print("Sorry, your number is too high, try again...");
+		    _hi = a - 1;
+		}
 	    }
 	    System.out.print("\nGuess a number from " + _lo + "-" + _hi + ": ");
 	    a = Keyboard.readInt();   //continue to get new input number
@@ -90,23 +100,23 @@ public class GuessNumber
 	System.out.println("Correct! It took you " + _guessCtr + " guess(es) :)");
     }
     
-	//wrapper for playRec/playIter to simplify calling
-	public void play() 
-	{ 
-	    //use one or the other below:
-	    //playRec();
-	    playIter();
-	}
+    //wrapper for playRec/playIter to simplify calling
+    public void play() 
+    { 
+	//use one or the other below:
+	playRec();
+      	//playIter();
+    }
 
-	//main method to run it all
-	public static void main( String[] args ) 
-	{
-	    //instantiate a new game
-	    GuessNumber g = new GuessNumber(1,100);
+    //main method to run it all
+    public static void main( String[] args ) 
+    {
+	//instantiate a new game
+	GuessNumber g = new GuessNumber(1,100);
 
-	    //start the game
-	    g.play();
-	    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	}//end main
+	//start the game
+	g.play();
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    }//end main
 
-    }//end class
+}//end class
