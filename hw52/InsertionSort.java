@@ -1,7 +1,7 @@
 /* Alexia Leong
    APCS1 pd2
    HW52 -- Poker Face 
-   2017-12-13 */
+   2017-12-12 */
 
 /***************************************
  *  class InsertionSort -- implements InsertionSort algorithm
