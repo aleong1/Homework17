@@ -37,22 +37,19 @@ public class InsertionSort
   }
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
   // VOID version of InsertionSort
   // Rearranges elements of input ArrayList
   // postcondition: data's elements sorted in ascending order
   public static void insertionSortV( ArrayList<Comparable> data )
-    {int curr;
-      for(int partition = 1; partition < data.size(); partition++){
-
-	  for(int a = partition; a > 0; a--){
+    {
+	for(int partition = 1; partition < data.size(); partition++){   //for n-1 passes
+	    for(int a = partition; a > 0; a--){  //go in opposite direction to arrange sorted portion
 	      if(data.get(a).compareTo(data.get(a-1)) < 0){
-		  data.set( a-1, data.set(a,data.get(a-1)) );
+		  data.set( a-1, data.set(a,data.get(a-1)) );  //swap values
 	      }
 	  }
       }
   }//end insertionSortV
-
 
   // ArrayList-returning insertionSort
   // postcondition: order of input ArrayList's elements unchanged
@@ -61,13 +58,11 @@ public class InsertionSort
     insertionSort( ArrayList<Comparable> input )
   {
       ArrayList go = new ArrayList<Comparable>();
-      for(Comparable y : input)
+      for(Comparable y : input)   //make new ArrayList and copy elements of input into it
 	  go.add(y);
-
       insertionSortV(go);
       return go;
   }//end insertionSort  
-
 
   public static void main( String [] args )
   {
@@ -89,7 +84,6 @@ public class InsertionSort
       System.out.println( "\nArrayList coco after sorting:\n" + coco );
 
   ============================================*/
-
   
       System.out.println( "*** Testing non-void version... *** " );
     	ArrayList glen = new ArrayList<Integer>();
