@@ -6,6 +6,10 @@
 import java.util.ArrayList;
 
 public class MySorts{
+    /*From OAL, add() is binary and addBin() is logarithmic
+     Best case for add() is if the appropriate index is the first one, the worst case is if its the last index because it uses a linear search.
+    For addBin(), the best case would be if it's the first half index. The worst case would be if it's at the position log2(n). This uses binary search.*/
+    
     //helper method: populate
     //precond: lo < hi && size > 0
     //postcond: returns an ArrayList of random integers
