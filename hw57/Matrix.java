@@ -1,3 +1,8 @@
+/* Alexia Leong
+   APCS1 pd2
+   HW57 -- How Deep Does The Rabbit Hole Go? 
+   2017-12-19 */
+
 /***
  * class Matrix -- models a square matrix
  *
