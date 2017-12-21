@@ -161,9 +161,9 @@ public class Matrix
 
     //returns copy of row r
     public Object[] getRow( int r )
-    { Object[] copy = new Object[size()];
+    { Object[] copy = new Object[size()];  
 	for(int a = 0; a < size(); a++){
-	    copy[a] = _matrix[r][a];
+	    copy[a] = _matrix[r][a]; //copy items over
 	}
 	return copy;
     }//O(1) bc it goes straight to the row needed
@@ -171,8 +171,8 @@ public class Matrix
     //replaces row r with 1D array newRow
     //returns old row
     public Object [] setRow( int r, Object[] newRow )
-    {Object[] copy = _matrix[r];
-	_matrix[r] = newRow;
+    {Object[] copy = _matrix[r];  //make a copy into the row
+	_matrix[r] = newRow;  //set new row
 	return copy;
     }//O(1)
 
@@ -194,8 +194,8 @@ public class Matrix
     public void transpose()
     { Object temp;
 	for(int a = 1; a < size(); a++){
-	    for(int c = 0; c < a; c++){
-		temp = _matrix[a][c];
+	    for(int c = 0; c < a; c++){  //this is the swapping area
+		temp = _matrix[a][c];//placeholder
 		_matrix[a][c] = _matrix[c][a];
 		_matrix[c][a] = temp;
 	    }
