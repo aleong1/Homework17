@@ -29,9 +29,32 @@ Algorithm:
 
 
 public class MatrixFinder {
-    public 
+    public static String search(int[][] matrix, int target){
+	int col = matrix.length - 1; //starting at upper right corner
+	int row = 0;
+	while(col >= 0 && row < matrix.length){  //as long as it's in the bounds of the matrix
+	    if(matrix[row][col] == target){  //once that target is found, if it's there
+		return "[" + row + "," + col + "]";
+	    }
+	    if(matrix[row][col] < target){  //either it's less than target so go to greater #s
+		row++;
+	    }
+	    else{  //or less than target so go to lower #s
+		col--;
+	    }
+	}
+	return "[-1,-1]";  //if not found, return [-1,-1]
+    }
 
-    
+    public static void main(String[] args){
+	int[][] x = {{1,3,5},{2,6,9},{7,10,13}};
+	System.out.println("Position of 6:  " + search(x,6)); //[1,1]
+	System.out.println("Position of 5:  " + search(x,5)); //[0,2]
+	System.out.println("Position of 7:  " + search(x,7)); //[2,0]
+	System.out.println("Position of 14 (not in matrix):  " + search(x,14)); //-1,-1]
+    }
+
+	    
 }
 
 
