@@ -27,7 +27,6 @@ Algorithm:
        in which case we return (-1, -1)
 */
 
-
 public class MatrixFinder {
     public static String search(int[][] matrix, int target){
 	int col = matrix.length - 1; //starting at upper right corner
