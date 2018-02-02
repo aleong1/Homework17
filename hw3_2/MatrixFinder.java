@@ -42,15 +42,30 @@ public class MatrixFinder {
 			col--;
 	    }
 	}
-	return "(-1,-1)";  //if not found, return (-1,-1)
+	return "(-1,-1)";  //if not found, return (-1,-1])
     }
 
     public static void main(String[] args){
 		int[][] x = {{1,3,5},{2,6,9},{7,10,13}};
-		System.out.println("Position of 6:  " + search(x,6)); //(1,1)
-		System.out.println("Position of 5:  " + search(x,5)); //(0,2)
-		System.out.println("Position of 7:  " + search(x,7)); //(2,0)
+		int[][] y = {{1}};
+
+        String s = "Displaying matrix x:\n";
+        for (int r = 0; r < x.length; r++) {
+            s += "|  ";
+            for (int c = 0; c < x.length; c++) {
+                s += x[r][c] + "  ";
+            }
+            s += "|\n";
+        }
+        System.out.println(s);
+
+		System.out.println("Position of 6 in x:  " + search(x,6)); //(1,1)
+		System.out.println("Position of 5 in x:  " + search(x,5)); //(0,2)
+		System.out.println("Position of 7 in x:  " + search(x,7)); //(2,0)
 		System.out.println("Position of 14 (not in matrix):  " + search(x,14)); //(-1,-1)
+
+		System.out.println("\nPosition of 1 in y:  " + search(y,1)); //(0,0)
+		System.out.println("Position of 0 (not in matrix):  " + search(y,0)); //(-1,-1)
     }
 
 	    
