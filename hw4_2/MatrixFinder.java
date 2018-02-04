@@ -1,7 +1,7 @@
-//Team Cheesy Potatoes -- Alexia Leong, Bing Li, Wenting Li
+//Team Cheesy Potatoes -- Wenting Li, Alexia Leong, Bing Li
 //APCS2 pd01
-//HW03 -- I Am Still Searching
-//2018-02-02
+//HW04
+//2018-02-02 T
 
 /*
  *Consider an n x n 2D array of ints, wherein numbers increase across any row (L->R) and down any column...
@@ -25,83 +25,79 @@
  *        c  if element > target, decrease column by 1
  *    3. Repeat step 2 until coordinates are returned or element is out of bound
  *       in which case we return (-1, -1)
+ * 
+ * ===================================================
+ * Phase II:
+ * Runtime Experimentations
+ * 
  */
+ 
+ public class MatrixFinder{
 
-public class MatrixFinder {
-    public static String search(int[][] matrix, int target){
-	int col = matrix.length - 1; //starting at upper right corner
-	int row = 0;
-	while(col >= 0 && row < matrix.length){  //as long as it's in the bounds of the matrix
-	    if (matrix[row][col] == target){  //once that target is found, if it's there
-		return "(" + row + "," + col + ")";
-	    }
-	    else if(matrix[row][col] < target){  //either it's less than target so go to greater #s
-		row++;
-	    }
-	    else{  //or less than target so go to lower #s
-		col--;
-	    }
-	}
-	return "(-1,-1)";  //if not found, return (-1,-1])
+    public static String search(int[][] matrix, int target) {
+        int row = 0, column = matrix.length - 1;
+        while (row < matrix.length && column > -1) {
+            if (matrix[row][column] == target) 
+                return "(" + row + "," + column + ")"; //returns coordinates of target when found
+            else if (matrix[row][column] < target) 
+                row++; //check a greater number (move down the column)
+            else column--; //check a lesser number (move left in the same row)
+        }
+        return "(-1,-1)"; //returns (-1,-1) if target doesn't exist in the matrix
     }
 
-    public static void main(String[] args){
-	int[][] x = {{1,3,5},{2,6,9},{7,10,13}};
-	int[][] y = {{1}};
-	int trial = 1;
-	
-        String s = "Displaying matrix x:\n";
-        for (int r = 0; r < x.length; r++) {
+    //=============================================================================
+    //Phase II: Runtime Experimentation
+
+    public static double avgRuntime(int[][] matrix, int target, int totalTrials) {
+        int trial = 1;
+        double avg = 0.0;
+        while (trial <= totalTrials) {
+            long startTime = System.nanoTime();
+            search(matrix, target); //code being tested 
+            long estimatedTime = System.nanoTime() - startTime;
+            //System.out.println("Run time for trial " + trial + " is " + estimatedTime + " nanoseconds.");
+            trial++;
+            avg += estimatedTime;
+        }
+        return avg / totalTrials;  
+    }
+
+
+    public static void main(String[] args) {
+        int[][] x = {{1,3,5},{2,6,9},{7,10,13}};
+
+/*        String s = "Displaying matrix:\n";
+        for (int r = 0; r < pigeon.length; r++) {
             s += "|  ";
-            for (int c = 0; c < x.length; c++) {
-                s += x[r][c] + "  ";
+            for (int c = 0; c < pigeon.length; c++) {
+                s += pigeon[r][c] + "  ";
             }
             s += "|\n";
         }
         System.out.println(s);
+        
+		System.out.println("Position of 6:  " + search(pigeon,6)); //(1,1)
+		System.out.println("Position of 5:  " + search(pigeon,5)); //(0,2)
+		System.out.println("Position of 7:  " + search(pigeon,7)); //(2,0)
+        System.out.println("Position of 14 (not in matrix):  " + search(pigeon,14)); //(-1,-1)
+*/
 
-	System.out.println("Position of 6 in x:  " + search(x,6)); //(1,1)
-	System.out.println("Position of 5 in x:  " + search(x,5)); //(0,2)
-	System.out.println("Position of 7 in x:  " + search(x,7)); //(2,0)
-	System.out.println("Position of 14 (not in matrix):  " + search(x,14)); //(-1,-1)
+        //=============================================================================
+        //Phase II: Runtime Experimentation
 
-	System.out.println("\nPosition of 1 in y:  " + search(y,1)); //(0,0)
-	System.out.println("Position of 0 (not in matrix):  " + search(y,0)); //(-1,-1)
+        System.out.println("\n\nPosition of 5 in x:");
+        System.out.println("The average time to look for 5 (the best case so it should take the shortest) in x is "
+                + avgRuntime(x, 5, 1000) + " nanoseconds.");
 
-	//testing out runtime
-	System.out.println("\n\nPosition of 6 in x:");
-	while(trial <= 10){
-	    long startTime = System.nanoTime();
-	    search(x,6); //code being tested 
-	    long estimatedTime = System.nanoTime() - startTime;
-	    System.out.println("Run time for trial " + trial + " is " + estimatedTime +" nanoseconds.");
-	    trial++;
-	}
+        System.out.println("\n\nNew Target:\nPosition of 1 in x:");
+        System.out.println("The average time to look for 1 in x is " 
+                + avgRuntime(x, 1,1000) + " nanoseconds.");
 
-	trial = 1;
-	System.out.println("\n\nNew Target:\nPosition of 7 in x:");
-	while(trial <= 10){
-	    long startTime = System.nanoTime();
-	    search(x,7); //code being tested 
-	    long estimatedTime = System.nanoTime() - startTime;
-	    System.out.println("Run time for trial " + trial + " is " + estimatedTime +" nanoseconds.");
-	    trial++;
-	}
+        System.out.println("\n\nNew Target:\nPosition of 7 in x:");
+        System.out.println("The average time to look for 7 (the worst case so it should take the longest) in x is "
+                + avgRuntime(x, 7,1000) + " nanoseconds.");
 
-	trial = 1;
-	System.out.println("\n\nNew Target:\nPosition of 5 in x:");
-	while(trial <= 10){
-	    long startTime = System.nanoTime();
-	    search(x,5); //code being tested 
-	    long estimatedTime = System.nanoTime() - startTime;
-	    System.out.println("Run time for trial " + trial + " is " + estimatedTime +" nanoseconds.");
-	    trial++;
-	}
-			     
-	
-    }//end of main
+    }
 
-	    
-}
-
-
+}//end of MatrixFinder
