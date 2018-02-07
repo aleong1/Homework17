@@ -8,7 +8,7 @@ HW05 -- Step 1: Split, Step 2: ?, Step 3: Sorted!. . .
   Implements mergesort on array of ints.
 
   Summary of Algorithm:
-
+In the merge method it compares the first elements of each array and as it "takes" or copies over the lower element, it moves down that array. Then, if there are no more elements in one array, it adds the "leftover" elements to the merged array. In sort, I recursively broke/divided the array in half until the elements are by themselves in arrays of 1 element and then with those, I merged them until the array with the original size is returned.
   ======================================*/
 
 public class MergeSort
@@ -45,7 +45,6 @@ public class MergeSort
       return c;
   }//end merge()
 
-
   /******************************************************
    * int[] sort(int[])
    * Sorts input array using mergesort algorithm
@@ -66,8 +65,6 @@ public class MergeSort
 	}
 	return merge(sort(temp), sort(temp1));
   }//end sort()
-
-
 
   //-------------------HELPERS-------------------------
   //tester function for exploring how arrays are passed
