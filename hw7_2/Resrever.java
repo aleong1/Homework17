@@ -3,15 +3,17 @@ APCS2 pd1
 HW07 -- A Man, A Plan, A Canal: Panama!
 2018-02-14 */
 
-//O(n) runtime:
+
 
 public class Resrever{
+
+    //O(n) runtime:
     public static String nReverse(String a){
 	int last = a.length() - 1;  //starting from the end of the string, keep on adding the last letter to what's being returned
 	if(a.length() == 1) return a;
 	else return a.substring(last) + nReverse(a.substring(0,last));
     }
-
+    //O(logn) runtime: 
     public static String lgReverse(String b){  //you keep on dividing the string in half and reversing if the half is in the beginning half or the end half
 	int mid = b.length()/2;
 	if(b.length() == 1) return b;
