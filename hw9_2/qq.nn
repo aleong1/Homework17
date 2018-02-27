@@ -1,0 +1,22 @@
+Alexia Leong
+APCS2 pd1
+HW09 -- Yaaasss Queens
+2018-02-27 
+
+Process:
+I started by putting the queen in the top left corner and finding possible solutions and then moving the queen one column to the right until it reaches the end of the board. Even though rotating the board and reflecting the queens on the board can create a different looking solution, I chose not to count those as a separate solution because essentially, it's just one solution that was flipped but since we don't know the position of the board, the way the pieces are viewed depends, even though it's still one solution.
+
+2x2:
+This case is not possible because since a queen can move horizontally, vertically, and diagonally, there's no place to put the other queen if you put one down.
+3x3:
+This case is also impossible because there is only space for two queens to not get each other, when you put down two queens, it eliminates all the other spaces on the board for another queen to be safe, so 3 queens on a 3x3 board is not possible.
+4x4:
+This is where the cases start being possible because even as more queens are added and the "safe" spaces on the board are cancelled out, there is still more space for up to 4 queens to fit on the board. There is only 1 solution for a 4x4 board. 
+5x5:
+For a 5x5 I found a total of 5 solutions.
+6x6:
+A 6x6 board has only 1 solution.
+7x7:
+I found 2 solutions for a 7x7 board.
+8x8: 
+For an 8x8 board I found 3 solutions. 
