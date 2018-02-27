@@ -51,8 +51,8 @@ public class QueenBoard
 
   /***
    * This first finds if the place you want is valid (if it's 0 then it's a valid position. Then it puts 1 in the place inputted. It also subtracts 1 from all the places on the same row. Then it goes to the column to the right of the column inputted and subtracts 1 from the places diagonal to the position inputted. 
-   * precondition: 
-   * postcondition: 
+   * precondition: a board of nXn where all positions are 0
+   * postcondition: a board with 1s as queens and invalid positions as negative numbers. Returns true or false if queens can be placed in position inputted.
    */
   private boolean addQueen(int row, int col){
     if(_board[row][col] != 0){
@@ -75,7 +75,7 @@ public class QueenBoard
 
 
   /***
-   * <General description>
+   * First find if there's a queen in the position inputted and then makes it an empty space. Adds 1 to the newly valid conditions for that position.
    * precondition: 
    * postcondition: 
    */
