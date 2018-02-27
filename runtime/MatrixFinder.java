@@ -86,10 +86,6 @@
         //=============================================================================
         //Phase II: Runtime Experimentation
 
-        System.out.println("\n\nPosition of 5 in x:");
-        System.out.println("The average time to look for 5 (the best case so it should take the shortest) in x is "
-                + avgRuntime(x, 5, 1000) + " nanoseconds.");
-
         System.out.println("\n\nNew Target:\nPosition of 1 in x:");
         System.out.println("The average time to look for 1 in x is " 
                 + avgRuntime(x, 1,1000) + " nanoseconds.");
@@ -97,6 +93,10 @@
         System.out.println("\n\nNew Target:\nPosition of 7 in x:");
         System.out.println("The average time to look for 7 (the worst case so it should take the longest) in x is "
                 + avgRuntime(x, 7,1000) + " nanoseconds.");
+
+	  System.out.println("\n\nPosition of 5 in x:");
+        System.out.println("The average time to look for 5 (the best case so it should take the shortest) in x is "
+                + avgRuntime(x, 5, 1000) + " nanoseconds.");
 
     }
 
