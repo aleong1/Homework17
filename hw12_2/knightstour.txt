@@ -3,6 +3,11 @@ APCS2 pd1
 HW12-  +3R|\/|1|\|4|_  1|_|_|\|3$$
 2018-03-02   
 
+Questions:
+
+
+
+
 Latest Step by Step Algorithm for Knight's tour
 1.	If there are no squares left (the tour is over), print solution
 2.	Start by placing knight at top left corner
