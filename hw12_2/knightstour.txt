@@ -1,0 +1,17 @@
+Alexia Leong
+APCS2 pd1
+HW12-  +3R|\/|1|\|4|_  1|_|_|\|3$$
+2018-03-02   
+
+Latest Step by Step Algorithm for Knight's tour
+1.	If there are no squares left (the tour is over), print solution
+2.	Start by placing knight at top left corner
+3.	For the number of knights on the board,
+	a.	If possible, move knight to the space two down and one to the right (add it)
+		i.	Then recursively place the knights down  with the rest of the spaces
+	b.	If that wasn't possible choose remove that one and choose another one of the open spots a knight can move and go there (possibilities are the ones that go two down/up and over, the ones that go two across then up, and then the ones that go one down/up and over two)
+		i.	Then recursively place the rest of the knights down
+	c.	If the tours for a and b don't work out, that tour doesn't work
+	d.	Otherwise, a solution is found.
+4.	Return whether or not there was a solution (true/false) and if it was true, show what it was.  
+
