@@ -118,7 +118,7 @@ class TourFinder
 
 	    board[x][y] = moves;
 
-	    delay(1000); //uncomment to slow down enough to view
+	    //delay(1000); //uncomment to slow down enough to view
 
 	    /*======================================
 	      Recursively try to solve (find tour) from 
@@ -152,7 +152,7 @@ class TourFinder
 	    //moves -= 1;
 	    solved = false;
 
-	    System.out.println( this ); //refresh screen
+	    //System.out.println( this ); //refresh screen
 	}
     }//end findTour()
 
@@ -178,7 +178,7 @@ public class KnightTour
 	System.out.println( "[2J" ); 
 
 	//display board 
-	System.out.println( tf );
+	//System.out.println( tf );
 
 	//for random starting location, use lines below:
 	int startX = 2 + (int)( n * Math.random() );
