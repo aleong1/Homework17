@@ -150,7 +150,7 @@ class TourFinder
 
 	    board[x][y] = 0;
 	    //moves -= 1;
-	    solved = false;
+	    // solved = false;
 
 	    System.out.println( this ); //refresh screen
 	}
