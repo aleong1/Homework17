@@ -8,10 +8,10 @@ HW13 -- We On Award Tour
   Animates a Knight's Tour of a square chess board.
 
   Mean execution times for boards of size n*n:
-  n=5   .46s    over 2  executions 
-  n=6   1.896s    over 2  executions
-  n=7   13.926s    over 2 executions
-  n=8   67.21s    over 2 executions
+  n=5   .0578s    over 5  executions 
+  n=6   .0576s    over 5  executions
+  n=7   .3504s    over 5 executions
+  n=8   .1588s    over 5 executions
   ======================================*/
 
 /***

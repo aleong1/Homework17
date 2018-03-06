@@ -1,0 +1,22 @@
+Cheesy Potatoes - Alexia Leong, Bing Li, Wenting Li
+APCS2 pd1
+HW14 -- Maze
+2018-03-05   
+
+Section Uno:
+Q1: From any starting position, can an open tour always be found? Explain.
+As long as there is a solution (the tour isn't impossible) then an open tour can always be found because for every move/position on the board there are 8 directions/possibilities for the next move each with their own set of possible moves so I think that with an open tour, it is possible because there is one less restriction.
+Q2: Same, but for closed tour.
+I don't think a closed tour can always be found, with the restriction that the knight has to go back to a space where the knight can follow the same path restricts the whole tour because the path leading to the final spot has to be all clear, altering the way the tour can start from the beginning, eliminating many tours/solutions.
+Q3: How do you explain the increase in execution time as n increases?
+The size of the board increases my a lot, there's an additional row and column so there are more possibilities of where the knight can move but even with that, there's still then more backtracks because of solutions that don't work.
+Q4: Thoughts on optimization?
+One thought is using a divide and conquer method where the board is divided into smaller sections (all the same size if possible) and the knight goes to every square on that section before going to the next section and repeating it.
+
+Section Deux:
+State your cleanest algo for finding your way out of the maze.
+Pseudocode:
+1. If you're at the @ you completed the maze.
+2. Otherwise in a clockwise motion look if one space ahead in that direction is empty.
+2a. If it is then go there and recursively continue without moving the piece backwards unless it's a dead end
+3. Continue with recursion to move one space at a time to go out of maze. 
