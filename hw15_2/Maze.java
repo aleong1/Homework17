@@ -152,7 +152,6 @@ class MazeSolver
 	solved = false;
 	return;
 	    
-	
     }
   }
 
@@ -178,7 +177,7 @@ public class Maze
 
 	    //drop hero into the maze (coords must be on path)
 	    //comment next line out when ready to randomize startpos
-	    ms.solve( 0, 0 ); 
+	    //ms.solve( 4, 3 ); 
 
 	   
 	    //drop our hero into maze at random location on path
@@ -192,6 +191,7 @@ public class Maze
 	    }
 
 	    ms.solve( startX, startY );
+
 	 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     } catch( Exception e ) { 
 	    System.out.println( "Error reading input file." );
