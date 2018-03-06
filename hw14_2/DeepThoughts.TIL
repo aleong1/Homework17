@@ -1,22 +1,36 @@
-Cheesy Potatoes - Alexia Leong, Bing Li, Wenting Li
+Team Cheesy Potatoes-  Alexia Leong, Bing Li, Wenting Li
 APCS2 pd1
-HW14 -- Maze
-2018-03-05   
+HW14: Probing the Depths
+2018-03-06
+
+Mean execution times for boards of size n*n:
+  n=5   0.143s    over 5 executions 
+  n=6   0.155s    over 5 executions
+  n=7   0.55s     over 5 executions
+  n=8   0.279s    over 5 executions
 
 Section Uno:
 Q1: From any starting position, can an open tour always be found? Explain.
-As long as there is a solution (the tour isn't impossible) then an open tour can always be found because for every move/position on the board there are 8 directions/possibilities for the next move each with their own set of possible moves so I think that with an open tour, it is possible because there is one less restriction.
+    No because sometimes when I ran the the board, there are times where the board cannot find any solution (aka. the board ended up full of 0s).
+
 Q2: Same, but for closed tour.
-I don't think a closed tour can always be found, with the restriction that the knight has to go back to a space where the knight can follow the same path restricts the whole tour because the path leading to the final spot has to be all clear, altering the way the tour can start from the beginning, eliminating many tours/solutions.
+    No because when I ran the board, there are multiple times where the 1 and n^2 are in different places, meaning that the end does not overlap with the start.
+
 Q3: How do you explain the increase in execution time as n increases?
-The size of the board increases my a lot, there's an additional row and column so there are more possibilities of where the knight can move but even with that, there's still then more backtracks because of solutions that don't work.
+    The execution time increases as n increases because there will be more space available as the board gets bigger, meaning that there are more possibilities for the algorithm to recurse through. In addition, since there are more paths open, there will be more backtracks when the solution don't work.
+    
 Q4: Thoughts on optimization?
-One thought is using a divide and conquer method where the board is divided into smaller sections (all the same size if possible) and the knight goes to every square on that section before going to the next section and repeating it.
+    Getting rid of all the print statements and all the refreshing page commands. Also, to further optimize the time, Alexia mentions that we can use a divide and conquer method "where the board is divided into smaller sections (all the same size if possible) and the knight goes to every square on that section before going to the next section and repeating it."
 
 Section Deux:
-State your cleanest algo for finding your way out of the maze.
-Pseudocode:
-1. If you're at the @ you completed the maze.
-2. Otherwise in a clockwise motion look if one space ahead in that direction is empty.
-2a. If it is then go there and recursively continue without moving the piece backwards unless it's a dead end
-3. Continue with recursion to move one space at a time to go out of maze. 
+
+State your cleanest algo for finding your way out of a maze.
+0. Check if you are at the @ symbol then the algorithm ends
+1. Check the 4 paths clockwise recursively
+    If there is a blockage ($ and #), backtrack to previous position and start choosing the direction again
+    If the hero bumps into the boundary, then he shall backtrack
+    If there is no blockage and no boundary, then move in that direction and color the previous position $
+2. End the algorithm when the hero reaches @
+
+
+    
