@@ -117,12 +117,21 @@ class MazeSolver
    * @param y starting y-coord, measured from top
    *********************************************/
   public void solve( int x, int y ) {
-
+    
     delay(50); //slow it down enough to be followable
 
+    String retStr = "";
+    int i, j;
+    for( i=0; i<h; i++ ) {
+	    for( j=0; j<w; j++ )
+        retStr = retStr + maze[j][i];
+	    retStr = retStr + "\n";
+    }
+    
     //primary base case
     if (maze[x][y] == '$' ) {
 	solved = true;
+	System.out.println("Solved" + retStr);
 	return;
     }
     //other base case(s)...
