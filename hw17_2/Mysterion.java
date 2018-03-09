@@ -1,10 +1,10 @@
-/* Alexia Leong
+/* Team GOSING!!!! - Alexia Leong and Stefan Tan
 APCS2 pd1
 HW17
 2018-03-12 */
 
 /*
-I named the function sortDivider because what the function does is that is sorts every element in the array into whether or not it's greater or less than the element at position c/halfPos which is the divider. I made a into lowerBound because it's the position of the first element in the array and b into upperBound to know the size of the array. B has to change to match the size of the array. C was made into halfPos which is the center of the array when it's first inputted. Then I changed v into midVal because it will take the place of the value in the middle because as the array changes, the value at c/halfPos will change. Then I changed s into divider because when the function stops running, it's the position where everything to the left of it is < it and everything to the right is >= it, dividing the array.
+The function is called Partition because it divides/partitions every element in the array into whether or not it's greater or less than the element at position c/pvtPos which is the partition. A is left because it's the position left boundary in the array and b is right to be the upper boundary. B has to change to match the size of the array you want. Then v is pvtVal because it will take the place of the value of the partition because as the array changes, the value at c/pvtPos will change. Then s is storPos because it's the value that's always being compared to and when the function stops running, it's the position where everything to the left of it is < it and everything to the right is >= it, dividing the array.
  */
 
 public class Mysterion{
