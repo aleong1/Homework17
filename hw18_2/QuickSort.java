@@ -1,7 +1,7 @@
-//Clyde "Thluffy" Sinclair
-//APCS2 pd0
-//HW18 -- QuickSort
-//2018-03-13t
+/* Alexia Leong
+APCS2 pd1
+HW18 -- So So Quick
+2018-03-13 */   
   
 /*****************************************************
  * class QuickSort
@@ -9,17 +9,20 @@
  *
  * 1. Summary of QuickSort algorithm:
  * QSort(arr): 
+     1. It checks to see if the array is of size 1 or not, if it is then it returns the array, if not it goes to the helper function...
+     2. Called qsorthelp, this method has left and right boundaries as arguments.
+              a. This first checks to see if the array boundaries (left and right) don't overlap and stay on their resepctive side.
+              b. If that's true then if stores the index of the pvtPos from partitioning arr and then uses that as a bound when recursively doing qsorthelp on the left and right halves of the array. 
  *
  * 2a. Worst pivot choice and associated runtime: 
- *
+ *     When the pivot choice is one of the ends of the array because it divides the array into two arrays of size 1 and the (array size - 1) and continues to do that recursively. The size of the biggest array will only go down by 1 each time it goes back to do quicksort. Runtime is O(n^2). 
+       
  * 2b. Best pivot choice and associated runtime:
- *
- * 3. Approach to handling duplicate values in array:
- *
+ *     The best case is when the pivot position is the exact center and the arrays that are split are divided into equal sizes (or maybe off by 1). By doing this, the array is divided into two arrays that are the smallest size they can be without making the other array overly large. Since the array is being divided in half (or as close as possible to it) in addition to the recursive calls, the runtime is O(nlogn).
 
-Big O Runtime: O(n) 
-  Best case: O(n) if the partition is the yth smallest number
-  Worst case: O(n^2) searching for the smallest or largest number that is at the end of array and at the beginning at the array respectively
+ * 3. Approach to handling duplicate values in array:
+         Duplicates are handled as being greater than the number in the pvtPos.
+ *
  *****************************************************/
 
 public class QuickSort
@@ -66,40 +69,40 @@ public class QuickSort
    * @param d -- array of ints to be sorted in place
    *****************************************************/
   public static void qsort( int[] d )
-  { 
-
-  }
+    { if(d.length <= 1) return;  //if they're single size arrays (sorted within themselves)
+      else{
+	  qsorthelp(d, 0, d.length-1);  //go to helper method bc that one has bounds (left and right)
+      }      
+    }
 
   //you may need a helper method...
+    public static void qsorthelp(int[] arr, int left, int right){
+	if(left < right){
+	    int pvtPos = partition(arr, left, right, left);
+	    qsorthelp(arr, left, pvtPos - 1);  //lower half of array w/o pvtPos
+	    qsorthelp(arr, pvtPos + 1, right); // upper half of array w/o pvtPos
+	}
+    }
 
     public static int partition(int[] arr, int left, int right, int pvtPos){
-	int pvtVal, storPos, holder;
-	printArr(arr); //print arr as given
+	int pvtVal, storPos;
 	pvtVal = arr[pvtPos];  //takes value of element in the center position
-	swap(pvtPos, right, arr);
-	//	arr[pvtPos] = arr[right];  //swap the center value and the last one
-	//	arr[right] = pvtVal;  
+	swap(pvtPos, right, arr);  //swap the center value and the last one
         storPos = left;
 	for(int i = left; i <= right - 1; i++){
 	    if(arr[i] < pvtVal){    //swaps elements so all elements that are less than the pvtVal is on the left and > is on the right
-		//	holder = arr[storPos];  
-		//	arr[storPos] = arr[i];
-		//	arr[i] = holder;
+		swap(storPos, i, arr);
 		storPos += 1;
 	    }
 	}
-	//	holder = arr[right];  
-	//	arr[right] = arr[storPos];
-	//	arr[storPos] = holder;
-	printArr(arr);  //print completed array
+	swap(right, storPos, arr);
 	return storPos; //returns final resting pos of pvtPos
     }
 
   //main method for testing
   public static void main( String[] args )
   {
-    /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
-
+  
     //get-it-up-and-running, static test case:
     int [] arr1 = {7,1,5,12,3};
     System.out.println("\narr1 init'd to: " );
@@ -124,12 +127,11 @@ public class QuickSort
     qsort( arrN );
     System.out.println("arrN after sort: " );
     printArr(arrN);
+  /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
-    /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
-
-    //get-it-up-and-running, static test case w/ dupes:
+      //get-it-up-and-running, static test case w/ dupes:
     int [] arr2 = {7,1,5,12,3,7};
     System.out.println("\narr2 init'd to: " );
     printArr(arr2);
@@ -138,6 +140,7 @@ public class QuickSort
     System.out.println("arr2 after qsort: " );
     printArr(arr2);
 
+ 
 
     // arrays of randomly generated ints
     int[] arrMatey = new int[20];
@@ -154,7 +157,7 @@ public class QuickSort
     qsort( arrMatey );
     System.out.println("arrMatey after sort: " );
     printArr(arrMatey);
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y)    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   }//end main
 
