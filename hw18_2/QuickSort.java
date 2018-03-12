@@ -11,7 +11,7 @@ HW18 -- So So Quick
  * QSort(arr): 
      1. It checks to see if the array is of size 1 or not, if it is then it returns the array, if not it goes to the helper function...
      2. Called qsorthelp, this method has left and right boundaries as arguments.
-              a. This first checks to see if the array boundaries (left and right) don't overlap and stay on their resepctive side.
+              a. This first checks to see if the array boundaries (left and right) don't overlap and stay on their respective side.
               b. If that's true then if stores the index of the pvtPos from partitioning arr and then uses that as a bound when recursively doing qsorthelp on the left and right halves of the array. 
  *
  * 2a. Worst pivot choice and associated runtime: 
