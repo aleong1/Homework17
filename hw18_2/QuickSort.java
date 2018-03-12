@@ -16,6 +16,10 @@
  *
  * 3. Approach to handling duplicate values in array:
  *
+
+Big O Runtime: O(n) 
+  Best case: O(n) if the partition is the yth smallest number
+  Worst case: O(n^2) searching for the smallest or largest number that is at the end of array and at the beginning at the array respectively
  *****************************************************/
 
 public class QuickSort
@@ -68,6 +72,28 @@ public class QuickSort
 
   //you may need a helper method...
 
+    public static int partition(int[] arr, int left, int right, int pvtPos){
+	int pvtVal, storPos, holder;
+	printArr(arr); //print arr as given
+	pvtVal = arr[pvtPos];  //takes value of element in the center position
+	swap(pvtPos, right, arr);
+	//	arr[pvtPos] = arr[right];  //swap the center value and the last one
+	//	arr[right] = pvtVal;  
+        storPos = left;
+	for(int i = left; i <= right - 1; i++){
+	    if(arr[i] < pvtVal){    //swaps elements so all elements that are less than the pvtVal is on the left and > is on the right
+		//	holder = arr[storPos];  
+		//	arr[storPos] = arr[i];
+		//	arr[i] = holder;
+		storPos += 1;
+	    }
+	}
+	//	holder = arr[right];  
+	//	arr[right] = arr[storPos];
+	//	arr[storPos] = holder;
+	printArr(arr);  //print completed array
+	return storPos; //returns final resting pos of pvtPos
+    }
 
   //main method for testing
   public static void main( String[] args )
