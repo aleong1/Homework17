@@ -22,7 +22,6 @@ public class LLNode
 	_next = null;
     }
     
-
     //--------------v  ACCESSORS  v--------------
     public String getCargo()
     {
@@ -34,7 +33,6 @@ public class LLNode
 	return _next;
     }
     //--------------^  ACCESSORS  ^--------------
-
 
     //--------------v  MUTATORS  v--------------
     public String setCargo(String set)
@@ -50,14 +48,12 @@ public class LLNode
     }
     //--------------^  MUTATORS  ^--------------
 
-
     // override inherited toString
     public String toString()
     { 
         return "[" + _cargo + "]";
  
     }
-
 
     //main method for testing
     public static void main( String[] args )
