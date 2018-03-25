@@ -15,6 +15,7 @@ public class LList implements List{
 	_size = 0;
     }
 
+    
     public boolean add( String x ){
 	boolean added = false;
 	LLNode next = new LLNode(x);
@@ -31,6 +32,40 @@ public class LList implements List{
 	}
         return added;
     }
+    
+
+    public void add1(int index, String newVal){
+	if(index == 0){
+	    add(newVal);
+      	    return;
+      	}
+	int ctr = 0;
+	LLNode temp = _first;
+	while( ctr < index - 1){
+	    temp = temp.getNext();
+	    ctr++;
+	}
+	LLNode added = new LLNode(newVal);
+	added.setNext(temp.getNext());
+	temp.setNext(added);
+
+    }
+
+    public String remove( int index){
+	if(index == 0){
+	    LLNode temp = _first.getNext();
+	    return _first.getCargo();
+	}
+	int ctr = 0;
+	LLNode temp = _first;
+	while(ctr < index - 1){
+	    temp = temp.getNext();
+	    ctr++;
+	}
+	temp.setNext(temp.getNext().getNext());
+	return temp.getCargo();
+    }
+    
 
     public String get( int i ){
 	int ctr = 0;
@@ -76,12 +111,35 @@ public class LList implements List{
 	a.add("e");
 	System.out.println("Initial list: " + a);   //prints initial list
 
-	System.out.println("Node at position 1: " + a.get(1));  
-	System.out.println("Node at position 4: " + a.get(4));
-	//System.out.println("Node at position 5: " + a.get(5));  //should be null
+	/*
+	  a.add1(1, "added1");
+	  System.out.println("Changed list: " + a);
 
-	a.set(3,"changed");  //change d --> changed
+	  a.add1(0, "added0");
+	  System.out.println("Changed list: " + a);
+
+	  a.add1(7, "added7");
+	  System.out.println("Changed list: " + a);
+	  */	  
+
+	a.remove(1);
 	System.out.println("Changed list: " + a);
-	System.out.println("Size of the list is: " + a.size());      	 
+
+	a.remove(0);
+	System.out.println("Changed list: " + a);
+
+	a.remove(2);
+	System.out.println("Changed list: " + a);
+
+
+	
+
+	/*	System.out.println("Node at position 1: " + a.get(1));  
+		System.out.println("Node at position 4: " + a.get(4));
+		//System.out.println("Node at position 5: " + a.get(5));  //should be null
+
+		a.set(3,"changed");  //change d --> changed
+		System.out.println("Changed list: " + a);
+		System.out.println("Size of the list is: " + a.size());    */  	 
     }
 }
