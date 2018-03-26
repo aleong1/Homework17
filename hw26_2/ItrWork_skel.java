@@ -13,7 +13,11 @@ public class ItrWorkAL
     //returns a boolean to indicate whether key is present in L
     public static boolean foundA( Integer key, List<Integer> L ) 
 { 
-	/*** YOUR IMPLEMENTATION HERE ***/
+    for(Integer a: L){
+	if(a == key)
+	    return true;
+    }
+    return false;
     }
 
     //explicitly using an iterator
