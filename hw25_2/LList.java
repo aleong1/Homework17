@@ -1,7 +1,7 @@
 /* Alexia Leong
    APCS2 pd1
-   HW24b -- On the DLL
-   2018-03-26 */
+   HW25 -- Generically Speaking..........
+   2018-03-27 */
 
 public class LList implements List{
     //instance vars
@@ -54,7 +54,6 @@ public class LList implements List{
 	    for( int a=0; a < i-1; a++ )
 		temp = temp.getNext();  //temp becomes the next node in the list
 	    old = temp.getNext().getCargo();
-
 	    
 	    temp.setNext(temp.getNext().getNext());  //here, the pointer from temp already skips/removes the one infront of it
 	    if(temp.getNext() != null){  //getNext() is ALREADY the one you want, don't need two getNext()s
@@ -87,7 +86,6 @@ public class LList implements List{
 	    temp = temp.getNext();
 	Object old = temp.getCargo();
 	temp.setCargo(x);
-
 	return old;
     }
 
