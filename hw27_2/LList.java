@@ -300,7 +300,7 @@ public class LList<T> implements List<T>
       }
 
 	    //if you are removing the head node
-	    else if ( _dummy == head ) {
+	    else if ( _dummy == _head ) {
         removeFirst();
 	    }
 
