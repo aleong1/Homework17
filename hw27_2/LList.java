@@ -1,7 +1,7 @@
-/* Team ?????? --  Alexia Leong, Fiona Cai
-APCS2 pd1
-HW27 -- Make Itr Work
-2018-03-28 */   
+//Team BOOM SHAKA LAKA -- Alexia Leong, Fiona Cai
+//APCS2 pd1
+//HW27 -- Make Itr Work
+//2018-03-28
 
 /*****************************************************
  * class LList v6
@@ -14,8 +14,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class LList<T> implements List<T> 
-{ 
+public class LList<T> implements List<T>
+{
   // Your List.java must be in same dir to supersede
   // built-in Java List interface
 
@@ -37,10 +37,10 @@ public class LList<T> implements List<T>
 
   //append a new node to end of list
   public boolean add( T newVal )
-  { 
+  {
     addLast( newVal );
     return true; //per Java API spec
-  } 
+  }
 
 
   //insert a node containing newVal at position index
@@ -49,13 +49,13 @@ public class LList<T> implements List<T>
     if ( index < 0 || index > size() )
 	    throw new IndexOutOfBoundsException();
 
-    else if ( index == size() ) 
+    else if ( index == size() )
 	    addLast( newVal );
 
     DLLNode<T> newNode = new DLLNode<T>( newVal, null, null );
 
     //if index==0, insert node before head node
-    if ( index == 0 ) 
+    if ( index == 0 )
 	    addFirst( newVal );
     else {
 	    DLLNode<T> tmp1 = _head; //create alias to head
@@ -65,7 +65,7 @@ public class LList<T> implements List<T>
         tmp1 = tmp1.getNext();
 
 	    //init a pointer to node at insertion index
-	    DLLNode<T> tmp2 = tmp1.getNext(); 
+	    DLLNode<T> tmp2 = tmp1.getNext();
 
 	    //insert new node
 	    newNode.setNext( tmp2 );
@@ -114,7 +114,7 @@ public class LList<T> implements List<T>
 
 
   public T get( int index )
-  { 
+  {
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
 
@@ -128,11 +128,11 @@ public class LList<T> implements List<T>
     //check target node's cargo hold
     retVal = tmp.getCargo();
     return retVal;
-  } 
+  }
 
 
   public T set( int index, T newVal )
-  { 
+  {
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
 
@@ -144,17 +144,21 @@ public class LList<T> implements List<T>
 
     //store target node's cargo
     T oldVal = tmp.getCargo();
-	
+
     //modify target node's cargo
     tmp.setCargo( newVal );
-	
+
     return oldVal;
-  } 
+  }
 
 
   //return number of nodes in list
   public int size() { return _size; }
 
+  //Iterator method
+  public Iterator<T> iterator(){
+    return new MyIterator();
+  }
 
   //--------------------------------------------------------
   //--------------^  List interface methods  ^--------------
@@ -162,40 +166,40 @@ public class LList<T> implements List<T>
 
 
   //--------------v  Helper methods  v--------------
-  
+
   public void addFirst( T newFirstVal )
-  { 
+  {
     //insert new node before first node (prev=null, next=_head)
     _head = new DLLNode<T>( newFirstVal, null, _head );
 
-    if ( _size == 0 ) 
+    if ( _size == 0 )
 	    _tail = _head;
-    else 
+    else
 	    _head.getNext().setPrev( _head );
     _size++;
   }
 
-  
+
   public void addLast( T newLastVal )
-  { 
+  {
     //insert new node before first node (prev=_last, next=null)
     _tail = new DLLNode<T>( newLastVal, _tail, null );
 
-    if ( _size == 0 ) 
+    if ( _size == 0 )
 	    _head = _tail;
-    else 
+    else
 	    _tail.getPrev().setNext( _tail );
     _size++;
   }
 
-  
+
   public T getFirst() { return _head.getCargo(); }
 
   public T getLast() { return _tail.getCargo(); }
 
-  
+
   public T removeFirst()
-  { 
+  {
     T retVal = getFirst();
     if ( size() == 1 ) {
 	    _head = _tail = null;
@@ -208,9 +212,9 @@ public class LList<T> implements List<T>
     return retVal;
   }
 
-  
+
   public T removeLast()
-  { 
+  {
     T retVal = getLast();
     if ( size() == 1 ) {
 	    _head = _tail = null;
@@ -227,7 +231,7 @@ public class LList<T> implements List<T>
 
   // override inherited toString
   public String toString()
-  { 
+  {
     String retStr = "HEAD->";
     DLLNode<T> tmp = _head; //init tr
     while( tmp != null ) {
@@ -238,10 +242,6 @@ public class LList<T> implements List<T>
     return retStr;
   }
 
-    public Iterator<T> iterator(){
-	return new MyIterator();
-    }
-
 
 
   /*****************************************************
@@ -249,79 +249,83 @@ public class LList<T> implements List<T>
    * Adheres to specifications given by Iterator interface.
    * Uses dummy node to facilitate iterability over LList.
    *****************************************************/
-    private class MyIterator implements Iterator<T> //non-static to access inst. vars and methods of the enclosing class
+   private class MyIterator implements Iterator<T>
   {
     private DLLNode<T> _dummy;   // dummy node to tracking pos
     private boolean _okToRemove; // flag indicates next() was called
-    
-    //constructor 
-    public MyIterator() 
+
+    //constructor
+    public MyIterator()
     {
-	_dummy = _head;
-	_okToRemove = false;
+
+      _dummy = new DLLNode(null, null, _head);//point dummy to before the head
+      _okToRemove = false;
     }
 
     //-----------------------------------------------------------
     //--------------v  Iterator interface methods  v-------------
     //return true if iteration has more elements.
-    public boolean hasNext() 
+    public boolean hasNext()
     {
-	if(_dummy.getNext() == null)
-	    return true;
-	return false;
+      return _dummy.getNext() != null;
     }
 
 
     //return next element in this iteration
-    public T next() 
+    public T next()
     {
-	if (!hasNext())  //if there is no element after
-	    throw new NoSuchElementException();    //exception from api
-	_dummy = _dummy.getNext();
-	_dummy.getNext().setPrev(_dummy); 
-	return _dummy.getCargo();
+      _dummy = _dummy.getNext();
+      if(_dummy == null){
+        throw new NoSuchElementException();
+      }
+      _okToRemove = true;
+      return _dummy.getCargo();
     }
 
 
     //return last element returned by this iterator (from last next() call)
     //postcondition: maintains invariant that _dummy always points to a node
     //               (...so that hasNext() will not crash)
-    public void remove() 
+    public void remove()
     {
-      //Q: What is significance/purpose of these lines? To not get rid of an element you still want
+      //Q: What is significance/purpose of these lines?
       if ( ! _okToRemove )
         throw new IllegalStateException("must call next() beforehand");
 	    _okToRemove = false;
 
-	    //if the node that is changing pointers is empty
-	    if ( _dummy.getPrev().getPrev() == null  ) {
-		_head = _dummy; //pointer changes, skipping over one before
-	    }
-	    //if the node before is empty
-	    else if ( _dummy.getPrev() == null  ) {
-		_head = _dummy.getNext();
-	    }
-      //
-      //
-      // Q: How many ELSE-IF's are necessary? 
-      // Q: What are the cases you must consider?
-      //     --if the list only has 1 node
-      //      
-	    //if you can just remove the node
-	    else {
-		_dummy.setPrev(_dummy);
-		_okToRemove = false;
+      //if there is only one node in the list
+      if(_head == _tail){
+        _head = null;
+        _tail = null;
+      }
+
+	    //if you are removing the head node
+	    else if ( _dummy == head ) {
+        removeFirst();
 	    }
 
-      //Q: Anything else need to be done?
-      
+      //if you remove the tail node
+	    else if ( _dummy.getNext() == null ) {
+        removeLast();
+	    }
+
+      //all else cases are somewhere in the middle of the LList, call remove
+	    else {
+
+        _dummy.getPrev().setNext(_dummy.getNext()); //point the previous node to the node after dummy
+        _dummy.getNext().setPrev(_dummy.getPrev()); //point the after node to the previous node
+
+	    }
+
+      _size--; //oops gotta remember to decrease size
+
     }//end remove()
     //--------------^  Iterator interface methods  ^-------------
     //-----------------------------------------------------------
   }//*************** end inner class MyIterator ***************
-  
 
-  
+
+
   //main method for testing
   public static void main( String[] args )
   {
@@ -355,7 +359,7 @@ public class LList<T> implements List<T>
     System.out.println( "...after add(4,phat): " );
     System.out.println( james + "\tsize: " + james.size() );
 
-    System.out.println( "...after remove last: " 
+    System.out.println( "...after remove last: "
                         + james.remove( james._size-1) );
     System.out.println( james + "\tsize: " + james.size() );
 
@@ -370,5 +374,3 @@ public class LList<T> implements List<T>
   }//end main()
 
 }//end class LList
-
-
