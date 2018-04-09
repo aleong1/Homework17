@@ -11,13 +11,17 @@ public class Latkes
   //constructor
   public Latkes( int size )
   {
-
+      _stack = new String[size];
+      _stackSize = size;
   }
 
   //means of insertion
   public void push( String s )
   {
-
+      temp = new String[size + 1];
+      temp[0] = s;
+      for(int i = 1; i < size; i++)
+	  temp[i] = _stack[i-1];
   }
 
   //means of removal
