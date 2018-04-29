@@ -1,0 +1,27 @@
+Alexia Leong
+APCS2 pd1
+HW41 -- A Tree Grows in 251
+2018-04-30
+
+For constructing a binary tree, the minimum prerequisite information is that you need atleast 2 different traversals.
+A inorder and preorder, or inorder and postorder, but NOT a preorder and postorder because there could be different trees constructed with if you're given a pre and post order traversal.
+
+Algo for if it's inorder and preorder:
+1. The first element in a preorder traversal (make it a deque) is the root.
+2. Find that element in the inorder traversal deque, all the elements before that element will be the left branch and after will be the right branch
+   a. With the elements left of the target in the inorder traversal, they'll be the left branch so use recursion with this as the left branch and
+      the # of elements left of the target in the preorder traversal as the new param.
+   b. If it's for the right branch, use recursion for the elements right of the target in the inorder transversal and
+      the # of elements right of the target in the preorder traversal as the new param.
+4. Can continue until there will be nothing left or right of the element.
+
+Algo for inorder and postorder:
+1. The last element of the postorder deque is the root.
+2. Find that element in the inorder deque.
+   a. The elements to the left will be the left branch.
+      The inorder traversal input will be the elements left of the target.
+      The postorder input will be the first # of elements left of the target in the inorder traversal.
+   b. The elements to the right will be the right branch
+      The inorder traversal input will be the elements right of the target.
+      The postorder input will be the first # of elements right of the target in the inorder traversal.
+3. Can continue until there will be nothing left or right of the element.
