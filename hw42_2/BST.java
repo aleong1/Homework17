@@ -88,9 +88,9 @@ public class BST
   {
     if(currNode == null) return;  //no more nodes left, they're all printed
 
-    preOrderTrav(currNode.getLeft());   //left
+    inOrderTrav(currNode.getLeft());   //left
     System.out.println(currNode.getValue());  //root
-    preOrderTrav(currNode.getRight());  //right
+    inOrderTrav(currNode.getRight());  //right
   }
 
   //recurse left, recurse right, process root
@@ -102,8 +102,8 @@ public class BST
   {
     if(currNode == null) return;  //no more nodes left, they're all printed
 
-    preOrderTrav(currNode.getLeft());   //left
-    preOrderTrav(currNode.getRight());  //right
+    postOrderTrav(currNode.getLeft());   //left
+    postOrderTrav(currNode.getRight());  //right
     System.out.println(currNode.getValue());  //root
   }
 
