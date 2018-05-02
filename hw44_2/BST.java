@@ -1,7 +1,7 @@
-/* Team It's Not Cold Anymore -- Alexia Leong and Fiona Cai
+/* Team Lemonade -- Alexia Leong and Taaseen Ali
 APCS2 pd1
-HW43 -- BSTs is the Perfect Place for Shade
-2018-05-02 */
+HW44 --  Prune Your Tree
+2018-05-03 */
 
 
 /*****************************************************
@@ -187,6 +187,49 @@ public class BST
     return leftBranch + rightBranch;
   }
 
+  //remove method
+  public TreeNode remove(int val){
+    TreeNode leader = _root;
+    TreeNode follower = null;
+
+    while(leader != null && leader.getValue() != val ){  //leader finds target node
+      follower = leader;
+      if(val < leader.getValue()) leader = leader.getLeft();   //if val is too small go towards left
+      else if((val > leader.getValue())) leader = leader.getRight();  //when val is > than current node then go right
+    }
+
+    //different scenarios:
+    if(leader == null) return null; //val is not in this tree
+
+    //if node is a leaf
+    if(leader.getLeft() == null && leader.getRight() == null){
+      if(follower.getValue() > leader.getValue()) follower.setLeft(null);  //locate follower to leader
+      else follower.setRight(null);
+    }
+
+    //if node has 1 child
+    else if(leader.getLeft() == null) follower.setRight(leader.getRight());
+    else if(leader.getRight() == null) follower.setLeft(leader.getLeft());
+    
+    //if node has 2 children then choose the predecessor in the inorder traversal (the greatest val on the left subtree)
+    else{
+      TreeNode tracker = leader.getLeft();
+      while(tracker.getRight() != null){
+        tracker = tracker.getRight();  //tracker is now greatest val on left branch
+      }
+      TreeNode newnode = remove(tracker.getValue());   //replacing leader with new value
+      newnode.setLeft(leader.getLeft());
+      newnode.setRight(leader.getRight());
+
+      if(leader == _root) _root = newnode;   //locate where to replace with leader
+      else{
+        if (tracker.getValue() < tracker.getValue()) follower.setLeft(tracker);
+        else follower.setRight(tracker);
+      }
+    }
+    return leader;
+  }
+
   //main method for testing
   public static void main( String[] args )
   {
@@ -222,6 +265,17 @@ public class BST
 
     System.out.println("Height: " + arbol.height());  //should be 3
     System.out.println("Number of Leaves: " + arbol.numLeaves());  //should also be 3
+
+    System.out.println("Testing remove:");
+    arbol.remove(1);
+    System.out.println("after removing 1:");
+    arbol.preOrderTrav();
+    arbol.remove(5);
+    System.out.println("\nafter removing 5:");
+    arbol.preOrderTrav();
+    arbol.remove(4);
+    System.out.println("\nafter removing 4:");
+    arbol.preOrderTrav();
     /*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   }
