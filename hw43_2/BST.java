@@ -1,4 +1,4 @@
-/* Team It's Not Cold Anymore -- Alexia Leong and Fiona Cai
+/* Team  -- Alexia Leong and Fiona Cai
 APCS2 pd1
 HW43 -- BSTs is the Perfect Place for Shade
 2018-05-02 */
@@ -187,9 +187,24 @@ public class BST
     return leftBranch + rightBranch;
   }
 
-  public String toString(){
-    return " " + _root.getValue();
-  }
+    //remove
+    public TreeNode remove(int val){
+	TreeNode leader = _root;
+	TreeNode follower = null;
+	//if rt is a leaf
+	while(leader.getValue() != val){
+	    if(val < leader.getValue()){
+		follower = leader;
+		leader = leader.getRight();
+	    }
+	    else if(val > leader.getValue()){
+		follower = leader;
+		leader = leader.getLeft();
+	    }
+	}
+	    
+    }
+
 
   //main method for testing
   public static void main( String[] args )
