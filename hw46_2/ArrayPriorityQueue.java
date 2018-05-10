@@ -5,7 +5,7 @@ HW46 -- Arrr, There Be Priorities Here Matey
 
 import java.util.ArrayList;
 
-public class ArrayPriorityQueue<String> implements PriorityQueue<String> {
+public class ArrayPriorityQueue implements PriorityQueue{
   //instance vars
   private ArrayList<String> _arrPQ;
 
@@ -16,28 +16,35 @@ public class ArrayPriorityQueue<String> implements PriorityQueue<String> {
   public void add(String x){     //O(1)
     _arrPQ.add(x);   //adds to the end of ArrayList arrPQ
   }
+
   public boolean isEmpty(){    //O(1)
     return _arrPQ.size() == 0;
   }
+
   public String peekMin(){    //O(n)
     String min = _arrPQ.get(0);
     for(int i = 1; i < _arrPQ.size();i++){
-      String str = _arrPQ.get(i);
-      if(str.compareTo(min) < 0 ){
-        min = str;
+      if(_arrPQ.get(i).compareTo(min) < 0 ){
+        min = _arrPQ.get(i);
       }
     }
     return min;
   }
 
   public String removeMin(){     //O(n)
-    String min = peekMin();
+    String min = _arrPQ.get(0);
+    for(int i = 1; i < _arrPQ.size();i++){
+      if(_arrPQ.get(i).compareTo(min) < 0 ){
+        min = _arrPQ.get(i);
+      }
+    }
     _arrPQ.remove(min);
+    return min;
   }
 
   public static void main(String args[]) {
     //Tests
-    ArrayPriorityQueue<String> test = new ArrayPriorityQueue<String>();
+    ArrayPriorityQueue test = new ArrayPriorityQueue();
     System.out.println(test.isEmpty()); //TRUE
     test.add("hi");
     test.add("ahmed");
@@ -45,11 +52,12 @@ public class ArrayPriorityQueue<String> implements PriorityQueue<String> {
     test.add("make");
     test.add("wordsearchpuzzles");
 
-    test.peekMin(); //ahmed
-    test.removeMin(); //removes ahmed
+    System.out.println(test.isEmpty()); //FALSE
+    System.out.println(test.peekMin()); //ahmed
+    System.out.println(test.removeMin()); //removes ahmed
     while(!test.isEmpty()){
-      test.removeMin();
+      System.out.println(test.removeMin());
     }
-    System.out.println(test); //null
+    System.out.println(test.isEmpty()); //TRUE
   }
 }
