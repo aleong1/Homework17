@@ -20,6 +20,7 @@ void draw() {
     height += .5;
   } 
   if (clicked > 0 && (clicked % 2) == 0) {   //if clicked even times --> shrink
+    clear();
     fill(255, 105, 180);  //set it pink
     ellipse(400, 400, width, height);    //have to make a new ellipse
     width -=.5;   //constant shrink(age)
